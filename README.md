@@ -1,3 +1,13 @@
+# riscv-arch-test-am
+RISC-V offical architecture test suite, ported to [abstract-machine](https://github.com/NJU-ProjectN/abstract-machine).
+
+Usage:
+
+```
+$ vim Makefile    # modify `TEST_ISA` and `EXCLUDE_TEST` if necessary
+$ make ARCH=riscv64-nemu run # run all testcases according to `TEST_ISA` and `EXCLUDE_TEST`
+$ make ARCH=riscv64-nemu ALL="addi lw" run   # only run the testcases for addi and lw
+```
 
 # RISC-V Architecture Test SIG
 
