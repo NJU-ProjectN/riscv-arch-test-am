@@ -14,9 +14,9 @@ BASE_ISA = $(if $(shell echo $(AM_ISA) | grep -o '\(32\|64\)e'),e,i)
 TEST_DIR = $(TEST_ISA:%=./riscv-test-suite/rv$(XLEN)$(BASE_ISA)_m/%/src)
 endif
 
-ORIGINAL_TEST = $(subst -01.S,,$(notdir $(shell find $(TEST_DIR) -name "*-01.S" | sort)))
+ORIGINAL_TEST = $(subst .S,,$(notdir $(shell find $(TEST_DIR) -name "*.S" | sort)))
 ALL = $(filter-out $(EXCLUDE_TEST),$(ORIGINAL_TEST))
-ALL_SRCS = $(foreach d,$(TEST_DIR),$(foreach f,$(ALL),$(wildcard $(d)/$(f)-01.S)))
+ALL_SRCS = $(foreach d,$(TEST_DIR),$(foreach f,$(ALL),$(wildcard $(d)/$(f).S)))
 
 RESULT = .result
 $(shell > $(RESULT))
@@ -26,7 +26,7 @@ COLOR_GREEN = \033[1;32m
 COLOR_NONE  = \033[0m
 
 define find_src
-  $(filter %/$(1)-01.S,$(ALL_SRCS))
+  $(filter %/$(1).S,$(ALL_SRCS))
 endef
 
 all: $(addprefix Makefile., $(ALL))
