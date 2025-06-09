@@ -24,6 +24,7 @@ bad_trap: \
 #define RVMODEL_IO_ASSERT_GPR_EQ(_SP, _R, _I) \
   li _SP, _I; \
   bne _SP, _R, bad_trap;
+#define RVMODEL_IO_WRITE_STR(ScrReg, String)  // empty
 
 .section .text
 .globl main
