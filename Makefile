@@ -2,15 +2,20 @@
 TEST_ISA ?= I M
 EXCLUDE_TEST ?=
 
-SUPPORTED_AM_ISA = riscv64 riscv32 riscv64e riscv32e riscv32mini
+SUPPORTED_AM_ISA = riscv64 riscv32 riscv64e riscv32e minirv
 AM_ISA = $(word 1, $(subst -, ,$(ARCH)))
 
 ifeq ($(findstring $(MAKECMDGOALS),clean),)  # ignore the commands if the target is clean
 ifeq ($(filter $(SUPPORTED_AM_ISA), $(AM_ISA)), )
   $(error Expected $$ISA in {$(SUPPORTED_AM_ISA)}, Got "$(AM_ISA)")
 endif
+ifeq ($(AM_ISA), minirv)
+XLEN = 32
+BASE_ISA = e
+else
 XLEN = $(shell echo $(AM_ISA) | grep -o '32\|64')
 BASE_ISA = $(if $(shell echo $(AM_ISA) | grep -o '\(32\|64\)e'),e,i)
+endif
 TEST_DIR = $(TEST_ISA:%=./riscv-test-suite/rv$(XLEN)$(BASE_ISA)_m/%/src)
 endif
 
