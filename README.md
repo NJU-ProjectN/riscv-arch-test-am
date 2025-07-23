@@ -5,8 +5,10 @@ Usage:
 
 ```
 $ vim Makefile    # modify `TEST_ISA` and `EXCLUDE_TEST` if necessary
+                  # check riscv-test-suite/<TARGET_ISA>/ for supported ISA extensions
 $ make ARCH=riscv64-nemu run # run all testcases according to `TEST_ISA` and `EXCLUDE_TEST`
-$ make ARCH=riscv64-nemu ALL="addi lw" run   # only run the testcases for addi and lw
+$ make ARCH=riscv64-nemu ALL="addi-01 lw-align-01" run   # only run the testcases for addi-01 and lw-align-01
+                                                         # check riscv-test-suite/<TARGET_ISA>/<EXTENSION>/* for testcases
 ```
 
 # RISC-V Architecture Test SIG

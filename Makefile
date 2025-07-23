@@ -1,4 +1,4 @@
-# check ./riscv-test-suite/<TARGET_ISA>/ for more extensions
+# check riscv-test-suite/<TARGET_ISA>/* for more extensions
 TEST_ISA ?= I M
 EXCLUDE_TEST ?=
 
